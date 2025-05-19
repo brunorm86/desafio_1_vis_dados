@@ -1,62 +1,3 @@
-CREATE TABLE CID_Subcategorias (
-    subcat VARCHAR(10) PRIMARY KEY,
-    descricao TEXT
-);
-
-CREATE TABLE Internacoes (
-    id SERIAL PRIMARY KEY,
-    nasc DATE,
-    sexo INTEGER,
-    qt_diarias INTEGER,
-    diag_princ VARCHAR(10),
-    idade INTEGER,
-    dias_perm INTEGER,
-    morte BOOLEAN,
-    instru INTEGER,
-    raca_cor INTEGER,
-    car_int INTEGER,
-    cobranca INTEGER,
-    FOREIGN KEY (diag_princ) REFERENCES CID_Subcategorias(subcat)
-);
-
-
-
-Ótimo! Abaixo está o **modelo lógico** com os **comandos SQL (DDL)** para criar as tabelas `CID_Subcategorias` e `Internacoes`, com os tipos de dados apropriados e o relacionamento entre elas via chave estrangeira.
-
----
-
-### 🧱 **DDL – Estrutura SQL das tabelas**
-
-```sql
-CREATE TABLE CID_Subcategorias (
-    subcat VARCHAR(10) PRIMARY KEY,
-    descricao TEXT
-);
-```
-
-```sql
-CREATE TABLE Internacoes (
-    id SERIAL PRIMARY KEY,
-    nasc DATE,
-    sexo INTEGER,
-    qt_diarias INTEGER,
-    diag_princ VARCHAR(10),
-    idade INTEGER,
-    dias_perm INTEGER,
-    morte BOOLEAN,
-    instru INTEGER,
-    raca_cor INTEGER,
-    car_int INTEGER,
-    cobranca INTEGER,
-    FOREIGN KEY (diag_princ) REFERENCES CID_Subcategorias(subcat)
-);
-```
-----
-
-Claro! Aqui está o **modelo lógico** das tabelas `CID_Subcategorias` e `Internacoes`, com seus nomes de campos, tipos de dados e chaves bem definidos, pronto para ser usado em **MySQL**.
-
----
-
 ### 📘 Modelo Lógico (MySQL)
 
 #### **Tabela `CID_Subcategorias`**
@@ -65,8 +6,6 @@ Claro! Aqui está o **modelo lógico** das tabelas `CID_Subcategorias` e `Intern
 | --------- | ----------- | ----- | ----------------------------- |
 | subcat    | VARCHAR(10) | PK    | Código da subcategoria CID-10 |
 | descricao | TEXT        |       | Descrição da subcategoria     |
-
----
 
 #### **Tabela `Internacoes`**
 
@@ -85,42 +24,21 @@ Claro! Aqui está o **modelo lógico** das tabelas `CID_Subcategorias` e `Intern
 | car\_int    | TINYINT     |             | Característica da internação                  |
 | cobranca    | TINYINT     |             | Tipo de cobrança                              |
 
----
-
-### 🔑 Relacionamentos
+#### 🔑 Relacionamentos
 
 * **`Internacoes.diag_princ`** é **chave estrangeira** para **`CID_Subcategorias.subcat`**.
 
----
-
-### ⚙️ Observações técnicas
+#### ⚙️ Observações técnicas
 
 * `id` pode ser do tipo `INT AUTO_INCREMENT` para facilitar a inserção.
 * Campos como `sexo`, `instru`, `raca_cor`, etc., podem ser normalizados com tabelas auxiliares, se necessário.
 * Os tipos `TINYINT` são apropriados para codificações numéricas com poucos valores distintos (como sexo, raça, etc).
 * O campo `morte` foi definido como `BOOLEAN` para representar óbito (0 = não, 1 = sim).
 
----
-
-Se quiser, posso agora gerar o **script SQL real** com `CREATE TABLE` para importar no MySQL. Deseja isso também?
-
-
----
-
-### 🔎 Observações:
+#### 🔎 Observações:
 
 * `id SERIAL`: campo artificial para identificar unicamente cada linha de internação.
 * `nasc`: armazenado como `DATE`. Se o dado estiver como "AAAAMMDD" em texto, será necessário converter no momento da carga.
 * `diag_princ`: é uma **chave estrangeira** para `CID_Subcategorias.subcat`.
 * Campos como `sexo`, `instru`, `raca_cor`, etc., podem ter tabelas auxiliares de domínio caso você deseje normalizar mais o modelo.
 * `morte`: armazenado como `BOOLEAN` (0 = falso, 1 = verdadeiro).
-
----
-
-Se quiser, posso também:
-
-* Gerar scripts para **importação dos dados CSV** para essas tabelas.
-* Criar tabelas de **domínio** (ex: sexo, raça/cor, escolaridade).
-* Criar **índices** ou **consultas SQL exemplo**.
-
-Deseja seguir com algum desses?
